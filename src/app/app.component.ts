@@ -1,12 +1,9 @@
 import { Component } from '@angular/core';
-
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  selector:'app-root',
+  templateUrl:'./app.component.html',
+  standalone:true
 })
 export class AppComponent {
-  title = 'angular-project';
+  title = 'Angular Project';
 }
