@@ -2,7 +2,8 @@ import { Component } from '@angular/core'
 import { HeaderComponent } from './header/header.component'
 import { FooterComponent } from './footer/footer.component'
 import { SidebarComponent } from './sidebar/sidebar.component'
-import { ProductListComponent } from './product-list/product-list.component'
+import { ContainerComponent } from './container/container.component'
+import { SignUpComponent } from './auth/signup/signup.component'
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -10,7 +11,8 @@ import { ProductListComponent } from './product-list/product-list.component'
     HeaderComponent,
     FooterComponent,
     SidebarComponent,
-    ProductListComponent,
+    ContainerComponent,
+    SignUpComponent,
   ],
   standalone: true,
 })

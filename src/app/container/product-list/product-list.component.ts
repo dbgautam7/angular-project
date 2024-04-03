@@ -25,27 +25,31 @@ export class ProductListComponent {
       color: 'Black',
       discount: 15,
       thumbnail: 'assets/watch.webp',
+      cartCount: 0,
     },
     {
       name: 'Wallet',
       price: 900,
       color: 'Dark Gray',
       discount: 10,
-      thumbnail: 'assets/watch.webp',
+      thumbnail: 'assets/wallet.jpeg',
+      cartCount: 0,
     },
     {
       name: 'Band',
       price: 100,
       color: 'Red',
       discount: 15,
-      thumbnail: 'assets/watch.webp',
+      thumbnail: '/assets/band.webp',
+      cartCount: 0,
     },
     {
       name: 'Cap',
       price: 600,
       color: 'Black',
       discount: 15,
-      thumbnail: 'assets/watch.webp',
+      thumbnail: '/assets/cap.webp',
+      cartCount: 0,
     },
   ]
 
@@ -59,11 +63,11 @@ export class ProductListComponent {
     this.product.name = e.target.value
   }
 
-  incrementCartCount() {
-    this.addToCartCount < this.stockCount && this.addToCartCount++
+  incrementCartCount(product: any) {
+    product.cartCount < this.stockCount && product.cartCount++
   }
 
-  decrementCartCount() {
-    this.addToCartCount > 0 && this.addToCartCount--
+  decrementCartCount(product: any) {
+    product.cartCount > 0 && product.cartCount--
   }
 }
