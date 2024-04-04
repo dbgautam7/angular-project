@@ -1,10 +1,12 @@
-import { NgFor } from '@angular/common'
-import { Component } from '@angular/core'
+import { NgFor, NgIf } from '@angular/common'
+import { Component, Input } from '@angular/core'
+import { ProductComponent } from './product/product.component'
+import { LocalSearchComponent } from '../localSearch/local-search.component'
 
 @Component({
   selector: 'product-list',
   standalone: true,
-  imports: [NgFor],
+  imports: [NgFor, NgIf, ProductComponent],
   templateUrl: './product-list.component.html',
 })
 export class ProductListComponent {
@@ -17,6 +19,9 @@ export class ProductListComponent {
     discount: 15,
     thumbnail: 'assets/watch.webp',
   }
+
+  @Input()
+  searchText: string = ''
 
   products = [
     {

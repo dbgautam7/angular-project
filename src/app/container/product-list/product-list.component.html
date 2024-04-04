@@ -1,54 +1,13 @@
-<div class="grid grid-cols-2 gap-4">
-  <div
-    *ngFor="let product of products"
-    class="p-4 rounded-md border flex flex-col gap-2 justify-between"
-  >
-    <img
-      class="rounded-md object-contain h-[250px] w-full"
-      [src]="product.thumbnail"
-      alt="thumbnail"
-    />
-    <div class="leading-8 space-y-2">
-      <p>Name: {{ product.name }}</p>
-      <p>
-        Price: <span class="line-through">{{ 'Rs.' + product.price }}</span>
-      </p>
-      <p>Color: {{ product.color }}</p>
-      <p>
-        Discounted Price:
-        {{
-          'Rs.' +
-            (product.price - (product.discount * product.price) / 100).toFixed(
-              2
-            )
-        }}
-      </p>
-      <div class="flex gap-4 items-center justify-center">
-        <button
-          (click)="decrementCartCount(product)"
-          class="bg-green-500 h-8 w-8 rounded-md cursor-pointer"
-        >
-          -
-        </button>
-        <p>{{ product.cartCount }}</p>
-        <button
-          (click)="incrementCartCount(product)"
-          class="bg-green-500 h-8 w-8 rounded-md cursor-pointer"
-        >
-          +
-        </button>
-      </div>
-      <button
-        [disabled]="true"
-        class="block bg-green-500 w-full py-1 rounded-md mt-2 cursor-pointer"
-      >
-        Buy Now
-      </button>
-      <input
-        hidden
-        type="text"
-        [value]="product.name"
-        (input)="onNameChange($event)"
+<div>
+  <div class="grid grid-cols-2 gap-4">
+    <div *ngFor="let product of products">
+      <single-product
+        *ngIf="
+          searchText === '' || product.name.toLowerCase().includes(searchText)
+        "
+        [product]="product"
+        (incrementCartCount)="incrementCartCount(product)"
+        (decrementCartCount)="decrementCartCount(product)"
       />
     </div>
   </div>

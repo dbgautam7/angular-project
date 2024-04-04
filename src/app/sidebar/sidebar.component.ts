@@ -1,9 +1,16 @@
+import { NgIf } from '@angular/common'
 import { Component } from '@angular/core'
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [],
+  imports: [NgIf],
   templateUrl: './sidebar.component.html',
 })
-export class SidebarComponent {}
+export class SidebarComponent {
+  isSidebarOpen: boolean = false
+
+  toggleSidebar() {
+    this.isSidebarOpen = !this.isSidebarOpen
+  }
+}

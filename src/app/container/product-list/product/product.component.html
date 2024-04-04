@@ -1,0 +1,42 @@
+<div class="p-4 rounded-md border flex flex-col gap-2 justify-between">
+  <img
+    class="rounded-md object-contain h-[250px] w-full"
+    [src]="product.thumbnail"
+    alt="thumbnail"
+  />
+  <div class="leading-8 space-y-2">
+    <p>Name: {{ product.name }}</p>
+    <p>
+      Price: <span class="line-through">{{ 'Rs.' + product.price }}</span>
+    </p>
+    <p>Color: {{ product.color }}</p>
+    <p>
+      Discounted Price:
+      {{
+        'Rs.' +
+          (product.price - (product.discount * product.price) / 100).toFixed(2)
+      }}
+    </p>
+    <div class="flex gap-4 items-center justify-center">
+      <button
+        (click)="decrementCart()"
+        class="bg-green-500 h-8 w-8 rounded-md cursor-pointer"
+      >
+        -
+      </button>
+      <p>{{ product.cartCount }}</p>
+      <button
+        (click)="incrementCart()"
+        class="bg-green-500 h-8 w-8 rounded-md cursor-pointer"
+      >
+        +
+      </button>
+    </div>
+    <button
+      [disabled]="true"
+      class="block bg-green-500 w-full py-1 rounded-md mt-2 cursor-pointer disabled:cursor-not-allowed"
+    >
+      Buy Now
+    </button>
+  </div>
+</div>
