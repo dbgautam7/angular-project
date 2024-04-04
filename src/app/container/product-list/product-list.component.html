@@ -1,14 +1,14 @@
 <div>
   <div class="grid grid-cols-2 gap-4">
-    <div *ngFor="let product of products">
+    <ng-container *ngFor="let product of filteredProducts">
       <single-product
-        *ngIf="
-          searchText === '' || product.name.toLowerCase().includes(searchText)
-        "
+        (click)="selectedProduct = product"
+        class="cursor-pointer"
         [product]="product"
         (incrementCartCount)="incrementCartCount(product)"
         (decrementCartCount)="decrementCartCount(product)"
-      />
-    </div>
+      >
+      </single-product>
+    </ng-container>
   </div>
 </div>

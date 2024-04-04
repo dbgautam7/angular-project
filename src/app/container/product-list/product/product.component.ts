@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core'
+import { Product } from '../../../models/product'
 
 @Component({
   selector: 'single-product',
@@ -8,14 +9,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core'
 })
 export class ProductComponent {
   @Input()
-  product: {
-    name: string
-    price: number
-    color: string
-    discount: number
-    thumbnail: string
-    cartCount: number
-  }
+  product: Product
 
   @Input() stockCount: number
 

@@ -1,4 +1,8 @@
 <div>
   <local-search (searchTextChanged)="setSearchText($event)" />
-  <product-list [searchText]="searchText"></product-list>
+  <product-list [searchText]="searchText" #productListComponent />
+  <product-detail
+    [productListComp]="productListComponent"
+    *ngIf="productListComponent.selectedProduct"
+  />
 </div>

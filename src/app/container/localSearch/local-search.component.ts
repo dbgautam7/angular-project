@@ -5,8 +5,7 @@ import { FormsModule } from '@angular/forms'
   selector: 'local-search',
   standalone: true,
   imports: [FormsModule],
-  template:
-    '<input class="ps-2 py-1 mb-4 rounded-md bg-gray-200 outline-blue-400" type="text" [(ngModel)]="searchText" (input)="onSearchTextChanged()" placeholder="Search.." />',
+  templateUrl: './local-search.component.html',
 })
 export class LocalSearchComponent {
   searchText: string = ''
@@ -14,6 +13,12 @@ export class LocalSearchComponent {
   @Output() searchTextChanged: EventEmitter<string> = new EventEmitter<string>()
 
   onSearchTextChanged() {
+    this.searchTextChanged.emit(this.searchText)
+  }
+
+  //for reference to html dom element
+  setSearchText(ele: HTMLInputElement) {
+    this.searchText = ele.value
     this.searchTextChanged.emit(this.searchText)
   }
 }
