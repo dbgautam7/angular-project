@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core'
+import { Component, ViewChild } from '@angular/core'
 import { ProductListComponent } from './product-list/product-list.component'
 import { LocalSearchComponent } from './localSearch/local-search.component'
 import { DetailComponent } from './product-list/detail/detail.component'

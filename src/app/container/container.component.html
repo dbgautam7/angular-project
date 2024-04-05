@@ -1,5 +1,8 @@
 <div>
-  <local-search (searchTextChanged)="setSearchText($event)" />
+  <local-search
+    (searchTextChanged)="setSearchText($event)"
+    [inputValue]="searchText"
+  />
   <product-list [searchText]="searchText" #productListComponent />
   <product-detail
     [productListComp]="productListComponent"

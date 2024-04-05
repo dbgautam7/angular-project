@@ -1,0 +1,23 @@
+<div class="mb-28 border p-4">
+  <ng-content select="#p"></ng-content>
+
+  <!-- <ng-template #templateRef>
+    <input type="text" placeholder="Enter FirstName" #inputRef />
+    <br />
+    <input type="text" placeholder="Enter FirstName" #inputRef />
+    <br />
+    <input type="text" placeholder="Enter FirstName" #inputRef />
+    <br />
+    <button (click)="log()">Button</button>
+  </ng-template>
+
+  <ng-container *ngTemplateOutlet="templateRef"></ng-container> -->
+  <button (click)="toggleButton()">Toggle</button>
+  <ng-container *ngIf="buttonState; else off">
+    <p>The button is on.</p>
+  </ng-container>
+  <ng-template #off>
+    <p>The button is off.</p>
+  </ng-template>
+  <ng-content select="#strong"></ng-content>
+</div>

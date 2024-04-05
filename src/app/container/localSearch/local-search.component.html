@@ -11,6 +11,8 @@
     type="text"
     placeholder="Search.."
     #searchInput
+    [value]="inputValue"
+    (focus)="(0)"
   />
   <button (click)="setSearchText(searchInput)">Search</button>
 </div>

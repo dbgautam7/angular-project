@@ -1,4 +1,13 @@
-import { Component, EventEmitter, Output } from '@angular/core'
+import {
+  Component,
+  DoCheck,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core'
 import { FormsModule } from '@angular/forms'
 
 @Component({
@@ -7,8 +16,10 @@ import { FormsModule } from '@angular/forms'
   imports: [FormsModule],
   templateUrl: './local-search.component.html',
 })
-export class LocalSearchComponent {
+export class LocalSearchComponent implements OnChanges, OnInit, DoCheck {
   searchText: string = ''
+
+  @Input() inputValue: string
 
   @Output() searchTextChanged: EventEmitter<string> = new EventEmitter<string>()
 
@@ -20,5 +31,16 @@ export class LocalSearchComponent {
   setSearchText(ele: HTMLInputElement) {
     this.searchText = ele.value
     this.searchTextChanged.emit(this.searchText)
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes, 'changes', this.inputValue)
+  }
+  ngOnInit(): void {
+    console.log('init called', this.inputValue)
+  }
+
+  ngDoCheck(): void {
+    console.log('ng do checked called')
   }
 }
