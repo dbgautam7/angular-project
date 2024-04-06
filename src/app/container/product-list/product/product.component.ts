@@ -1,10 +1,12 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { Product } from '../../../models/product'
+import { SetBackgroundColorDirective } from '../../../customDirectives/backgroundColor.directive'
+import { HighlightDirective } from '../../../customDirectives/highlight.directive'
 
 @Component({
   selector: 'single-product',
   standalone: true,
-  imports: [],
+  imports: [SetBackgroundColorDirective, HighlightDirective],
   templateUrl: './product.component.html',
 })
 export class ProductComponent {

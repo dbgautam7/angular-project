@@ -19,9 +19,7 @@ import { LoginFormComponent } from './form/login/login-form.component'
   standalone: true,
 })
 export class AppComponent {
-  constructor() {
-    console.log('App component called')
-  }
+  constructor() {}
 
   title = 'Angular Project'
 }

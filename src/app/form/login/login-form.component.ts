@@ -8,9 +8,7 @@ import { Component, ElementRef, QueryList, ViewChildren } from '@angular/core'
   templateUrl: './login-form.component.html',
 })
 export class LoginFormComponent {
-  constructor() {
-    console.log('Login-form component called')
-  }
+  constructor() {}
 
   searchText: string = ''
   buttonState: boolean = false

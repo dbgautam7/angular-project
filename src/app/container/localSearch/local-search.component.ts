@@ -9,11 +9,12 @@ import {
   SimpleChanges,
 } from '@angular/core'
 import { FormsModule } from '@angular/forms'
+import { FocusDirective } from '../../customDirectives/focus.component'
 
 @Component({
   selector: 'local-search',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, FocusDirective],
   templateUrl: './local-search.component.html',
 })
 export class LocalSearchComponent implements OnChanges, OnInit, DoCheck {
