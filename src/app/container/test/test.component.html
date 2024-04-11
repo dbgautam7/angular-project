@@ -1,0 +1,23 @@
+<section
+  class="flex flex-col max-w-[1283px] min-h-[1276px] mt-10 px-14 pb-12 box-border cursor-pointer pointer-events-auto relative flex-wrap shrink-0 max-md:flex max-md:overflow-auto max-md:flex-row max-md:px-5"
+>
+  <div
+    *ngFor="let item of items"
+    class="absolute"
+    [style.left]="item.position.x"
+    [style.top]="item.position.y"
+  >
+    <img
+      [src]="item.imageUrl"
+      [alt]="item.imageAlt"
+      class="object-contain overflow-hidden grow mx-auto rounded-lg border border-solid aspect-[1.09] border-neutral-400 h-[281px] w-[305.5px] box-border"
+    />
+    <p class="w-auto h-auto text-xl box-border">{{ item.description }}</p>
+    <button
+      (click)="onItemClick(item.id)"
+      class="px-6 py-4 text-center text-black bg-white rounded border border-lime-300 border-solid appearance-none cursor-pointer h-[50px] w-[200px] box-border"
+    >
+      {{ item.label }}
+    </button>
+  </div>
+</section>

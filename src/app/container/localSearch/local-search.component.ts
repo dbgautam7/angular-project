@@ -10,15 +10,28 @@ import {
 } from '@angular/core'
 import { FormsModule } from '@angular/forms'
 import { FocusDirective } from '../../customDirectives/focus.component'
+import { NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common'
+import { IfDirective } from '../../customDirectives/if.directive'
+import { SearchService } from '../../services/search.service'
 
 @Component({
   selector: 'local-search',
   standalone: true,
-  imports: [FormsModule, FocusDirective],
+  imports: [
+    FormsModule,
+    FocusDirective,
+    NgIf,
+    IfDirective,
+    NgSwitch,
+    NgSwitchCase,
+    NgSwitchDefault,
+  ],
   templateUrl: './local-search.component.html',
+  providers: [SearchService],
 })
 export class LocalSearchComponent implements OnChanges, OnInit, DoCheck {
   searchText: string = ''
+  getDay: number = new Date().getDay()
 
   @Input() inputValue: string
 
@@ -28,8 +41,13 @@ export class LocalSearchComponent implements OnChanges, OnInit, DoCheck {
     this.searchTextChanged.emit(this.searchText)
   }
 
+  constructor(private searchService: SearchService) {}
+
   //for reference to html dom element
   setSearchText(ele: HTMLInputElement) {
+    this.searchService.handleSearch()
+    // let searchService = new SearchService()
+    // searchService.handleSearch()
     this.searchText = ele.value
     this.searchTextChanged.emit(this.searchText)
   }

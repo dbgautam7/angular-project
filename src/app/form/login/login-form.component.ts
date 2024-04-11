@@ -1,10 +1,11 @@
 import { NgIf, NgTemplateOutlet } from '@angular/common'
 import { Component, ElementRef, QueryList, ViewChildren } from '@angular/core'
+import { DisableButtonDirective } from '../../customDirectives/disable-button.directive'
 
 @Component({
   selector: 'login-form',
   standalone: true,
-  imports: [NgTemplateOutlet, NgIf],
+  imports: [NgTemplateOutlet, NgIf, DisableButtonDirective],
   templateUrl: './login-form.component.html',
 })
 export class LoginFormComponent {

@@ -8,11 +8,11 @@
     <br />
     <input type="text" placeholder="Enter FirstName" #inputRef />
     <br />
-    <button (click)="log()">Button</button>
+  <button (click)="log()">Button</button>
   </ng-template>
 
   <ng-container *ngTemplateOutlet="templateRef"></ng-container> -->
-  <button (click)="toggleButton()">Toggle</button>
+  <button [disableButton]="true" (click)="toggleButton()">Toggle</button>
   <ng-container *ngIf="buttonState; else off">
     <p>The button is on.</p>
   </ng-container>

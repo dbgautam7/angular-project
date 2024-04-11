@@ -16,4 +16,32 @@
     (focus)="(0)"
   />
   <button (click)="setSearchText(searchInput)">Search</button>
+
+  <div *display="inputValue !== ''">
+    <p>SearchValue:{{ inputValue }}</p>
+    <p>{{ getDay }}</p>
+  </div>
+  <div [ngSwitch]="getDay">
+    <div *ngSwitchCase="0">Today is Sunday! You deserve a break</div>
+
+    <div *ngSwitchCase="1">
+      <h3>Today is Monday, Hope you have productive Week</h3>
+    </div>
+
+    <div *ngSwitchCase="2"><h3>Today is Tuesday, Smash your Goals</h3></div>
+
+    <div *ngSwitchCase="3">
+      <h3>Today is Wednesday, You're already half way through</h3>
+    </div>
+
+    <div *ngSwitchCase="4">
+      <h3>Today is Thursday, It's like Friday Lite</h3>
+    </div>
+
+    <div *ngSwitchCase="5"><h3>Today is Friday, TGIF!!!</h3></div>
+
+    <div *ngSwitchCase="6"><h3>Today is Saturday, Let's Party!!!</h3></div>
+
+    <div *ngSwitchCase>Uh oh! Somethings wrong</div>
+  </div>
 </div>
