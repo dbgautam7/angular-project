@@ -9,4 +9,32 @@
     *ngIf="productListComponent.selectedProduct"
   />
   <app-test />
+  <div class="flex flex-col gap-4">
+    <input
+      class="border px-2 py-1 rounded-md"
+      type="text"
+      placeholder="Enter Name"
+      [(ngModel)]="name"
+    />
+    <select [(ngModel)]="gender" class="border px-2 py-1 rounded-md">
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+      <option value="others">Others</option>
+    </select>
+    <input
+      class="border px-2 py-1 rounded-md"
+      type="number"
+      [(ngModel)]="age"
+      placeholder="Enter age"
+    />
+    <span class="space-x-4">
+      <label>Student</label>
+      <input
+        class="border px-2 py-1 rounded-md"
+        type="checkbox"
+        [(ngModel)]="isStudent"
+      />
+    </span>
+    <button (click)="handleCreateNewUser()" class="border">Create User</button>
+  </div>
 </div>

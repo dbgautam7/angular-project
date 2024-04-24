@@ -5,6 +5,11 @@ import { SidebarComponent } from './sidebar/sidebar.component'
 import { ContainerComponent } from './container/container.component'
 import { SignUpComponent } from './auth/signup/signup.component'
 import { LoginFormComponent } from './form/login/login-form.component'
+import { SearchService } from './services/search.service'
+import { UserComponent } from './user/user.component'
+import { FormsModule } from '@angular/forms'
+import { UserService } from './services/user.service'
+import { LoggerService } from './services/logger.service'
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -16,10 +21,11 @@ import { LoginFormComponent } from './form/login/login-form.component'
     ContainerComponent,
     SignUpComponent,
     LoginFormComponent,
+    UserComponent,
   ],
   standalone: true,
-
   encapsulation: ViewEncapsulation.None,
+  providers: [SearchService, UserService, LoggerService],
 })
 export class AppComponent {
   constructor() {}

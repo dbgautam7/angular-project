@@ -27,7 +27,7 @@ import { SearchService } from '../../services/search.service'
     NgSwitchDefault,
   ],
   templateUrl: './local-search.component.html',
-  providers: [SearchService],
+  // providers: [SearchService],
 })
 export class LocalSearchComponent implements OnChanges, OnInit, DoCheck {
   searchText: string = ''

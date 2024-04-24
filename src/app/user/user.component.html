@@ -1,0 +1,12 @@
+<div class="grid grid-cols-2 gap-2 px-4">
+  <div class="border rounded-md py-2 px-4" *ngFor="let user of userList">
+    <p>{{ user.name }}</p>
+    <p>{{ user.gender }}</p>
+    <p>{{ user.age }}</p>
+    <p>{{ user.isStudent ? 'student' : 'child' }}</p>
+  </div>
+  <div class="border rounded-md py-2 px-4" *ngFor="let item of data">
+    <p>{{ item }}</p>
+  </div>
+  <button (click)="handleAsyncData()">Get Async Data Using Observable</button>
+</div>
