@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core'
 import { User } from '../models/user'
 import { LoggerService } from './logger.service'
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class UserService {
   users: User[] = [
     new User('Suhan Basnet', 'Male', 8, true),

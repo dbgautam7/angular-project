@@ -1,8 +1,7 @@
-import { Component } from '@angular/core'
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core'
 import { UserService } from '../services/user.service'
 import { NgFor } from '@angular/common'
-import { Observable } from 'rxjs'
-import { error } from 'console'
+import { Observable, filter, from, fromEvent, map } from 'rxjs'
 
 @Component({
   selector: 'app-user',
@@ -10,7 +9,7 @@ import { error } from 'console'
   imports: [NgFor],
   templateUrl: './user.component.html',
 })
-export class UserComponent {
+export class UserComponent implements AfterViewInit {
   constructor(private userService: UserService) {}
   userList = this.userService.getAllUsers()
 
@@ -20,6 +19,16 @@ export class UserComponent {
   // myObservable = new Observable((observer) => {
   //   observer.next([1, 2, 3, 4, 5, 6, 7])
   // })
+
+  mapObservable = from([2, 4, 6, 8, 10])
+
+  mappedData = this.mapObservable.pipe(map((val) => val * 5))
+  filteredData = this.mappedData.pipe(filter((val) => val % 4 === 0))
+
+  mappedFilteredData = this.mapObservable.pipe(
+    map((mappedVal) => mappedVal * 5),
+    filter((filteredVal) => filteredVal % 4 === 0),
+  )
 
   myObservable = new Observable((observer) => {
     observer.next(1)
@@ -33,6 +42,12 @@ export class UserComponent {
       observer.complete()
     }, 1000)
   })
+
+  promiseData = new Promise((resolve, reject) => {
+    resolve([1, 4, 8])
+  })
+
+  newObservable = from(this.promiseData)
 
   //observer or event listener
   // next, error, complete
@@ -55,7 +70,7 @@ export class UserComponent {
   //   )
   // }
   handleAsyncData() {
-    this.myObservable.subscribe({
+    this.mappedFilteredData.subscribe({
       next: (value: any) => {
         this.data.push(value)
       },
@@ -66,5 +81,30 @@ export class UserComponent {
         alert('Completion')
       },
     })
+  }
+
+  @ViewChild('createButton')
+  createButton: ElementRef
+
+  createButtonObservable: any
+
+  buttonClicked() {
+    let count: number = 1
+    this.createButtonObservable = fromEvent(
+      this.createButton.nativeElement,
+      'click',
+    ).subscribe(() => {
+      this.showItem(count++)
+    })
+  }
+
+  ngAfterViewInit(): void {
+    this.buttonClicked()
+  }
+
+  showItem(count: number) {
+    let div = document.createElement('div')
+    div.innerText = 'Text' + count
+    document.getElementById('container').appendChild(div)
   }
 }

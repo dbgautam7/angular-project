@@ -10,6 +10,8 @@ import { UserComponent } from './user/user.component'
 import { FormsModule } from '@angular/forms'
 import { UserService } from './services/user.service'
 import { LoggerService } from './services/logger.service'
+import { ShowTaskComponent } from './task/showTask/showTask.component'
+import { CreateTaskComponent } from './task/createTask/createTask.component'
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -22,6 +24,8 @@ import { LoggerService } from './services/logger.service'
     SignUpComponent,
     LoginFormComponent,
     UserComponent,
+    ShowTaskComponent,
+    CreateTaskComponent,
   ],
   standalone: true,
   encapsulation: ViewEncapsulation.None,
