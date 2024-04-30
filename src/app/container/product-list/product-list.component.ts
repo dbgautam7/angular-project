@@ -27,6 +27,7 @@ export class ProductListComponent {
 
   products = [
     {
+      id: 1,
       name: 'Watch',
       price: 2500,
       color: 'Black',
@@ -35,6 +36,7 @@ export class ProductListComponent {
       cartCount: 0,
     },
     {
+      id: 2,
       name: 'Wallet',
       price: 900,
       color: 'Dark Gray',
@@ -43,6 +45,7 @@ export class ProductListComponent {
       cartCount: 0,
     },
     {
+      id: 3,
       name: 'Band',
       price: 100,
       color: 'Red',
@@ -51,6 +54,7 @@ export class ProductListComponent {
       cartCount: 0,
     },
     {
+      id: 4,
       name: 'Cap',
       price: 600,
       color: 'Black',

@@ -1,8 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core'
 import { TaskService } from '../../services/task.service'
 import { NgFor } from '@angular/common'
-import { ajax } from 'rxjs/ajax'
-import { BehaviorSubject, Subject } from 'rxjs'
+import { BehaviorSubject } from 'rxjs'
 
 @Component({
   selector: 'app-show-task',

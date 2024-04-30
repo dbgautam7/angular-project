@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core'
+import { Component, NgModule, ViewEncapsulation } from '@angular/core'
 import { HeaderComponent } from './header/header.component'
 import { FooterComponent } from './footer/footer.component'
 import { SidebarComponent } from './sidebar/sidebar.component'
@@ -7,11 +7,12 @@ import { SignUpComponent } from './auth/signup/signup.component'
 import { LoginFormComponent } from './form/login/login-form.component'
 import { SearchService } from './services/search.service'
 import { UserComponent } from './user/user.component'
-import { FormsModule } from '@angular/forms'
 import { UserService } from './services/user.service'
 import { LoggerService } from './services/logger.service'
 import { ShowTaskComponent } from './task/showTask/showTask.component'
 import { CreateTaskComponent } from './task/createTask/createTask.component'
+import { RouterModule, RouterOutlet } from '@angular/router'
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -26,6 +27,8 @@ import { CreateTaskComponent } from './task/createTask/createTask.component'
     UserComponent,
     ShowTaskComponent,
     CreateTaskComponent,
+    RouterModule,
+    RouterOutlet,
   ],
   standalone: true,
   encapsulation: ViewEncapsulation.None,
@@ -33,6 +36,5 @@ import { CreateTaskComponent } from './task/createTask/createTask.component'
 })
 export class AppComponent {
   constructor() {}
-
   title = 'Angular Project'
 }

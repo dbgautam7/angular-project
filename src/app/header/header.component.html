@@ -1,18 +1,24 @@
 <nav class="bg-gray-950 py-2 w-full sticky top-0 px-8 z-10">
   <div class="mx-auto flex justify-between items-center">
-    <a href="/" class="text-white text-2xl font-semibold">
+    <i
+      (click)="handleNavigation()"
+      class="text-white text-2xl font-semibold cursor-pointer"
+    >
       <img src="/assets/db7.png" height="50" width="50" />
-    </a>
+    </i>
     <div class="flex gap-4 items-center">
       <ul *ngFor="let item of navbarItems">
         <li>
           <a
-            [href]="item.link"
+            [routerLinkActive]="'active'"
+            [routerLink]="item.link"
+            [routerLinkActiveOptions]="{ exact: true }"
             class="text-white hover:text-gray-300 font-roboto-condensed"
             >{{ item.name }}</a
           >
         </li>
       </ul>
+
       <li><app-search /></li>
     </div>
   </div>
