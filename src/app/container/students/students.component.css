@@ -131,3 +131,7 @@ input[type='number'] {
   padding: 5px 10px;
   color: #2874a6;
 }
+
+input.ng-invalid.ng-touched {
+  border: 2px solid red;
+}

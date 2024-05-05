@@ -16,30 +16,76 @@
         <option value="Female">Female</option>
       </select>
     </div>
-    <div style="margin: 10px 0px">
+    <div style="margin: 10px 0px" class="whitespace-nowrap">
       Total Students: {{ totalStudents | async }}
     </div>
   </div>
-  <!--HEADER ENDS-->
-
+  <form
+    class="flex justify-between mx-4 mt-2 text-white"
+    (ngSubmit)="OnFormSubmitted()"
+    #sampleForm="ngForm"
+  >
+    <input
+      class="border px-3 py-1 rounded-md text-black"
+      type="text"
+      placeholder="Enter Username"
+      name="username"
+      ngModel
+      required
+    />
+    <input
+      class="border px-3 py-1 rounded-md text-black"
+      type="password"
+      placeholder="Enter Password"
+      name="password"
+      ngModel
+      required
+      [ngClass]="{
+        '!border-red-600-600': sampleForm.invalid && sampleForm.touched
+      }"
+    />
+    <div *ngFor="let gender of genders">
+      <input
+        [id]="gender.id"
+        type="radio"
+        [value]="gender.value"
+        name="gender"
+        ngModel
+      />
+      <label>{{ gender?.value | titlecase }}</label>
+    </div>
+    <button (click)="patchGender()">PatchGender</button>
+    <input type="checkbox" name="pass" ngModel />
+    <label>Pass</label>
+    <button
+      [ngClass]="sampleForm.dirty ? 'border-green-600' : 'border-gray-600'"
+      class="border px-3 py-1 rounded-md"
+      type="submit"
+    >
+      Submit
+    </button>
+  </form>
   <div class="admin-content">
     <table (mouseover)="(0)">
-      <!--TABLE HRADER-->
-      <th>ID</th>
-      <th>Name</th>
-      <th>Gender</th>
-      <th>Date of Birth</th>
-      <th>Course</th>
-      <th>Marks</th>
-      <th>Percentage</th>
-      <th>Fees</th>
-      <th></th>
-      <th>
-        <button class="insert-button" (click)="OnInsertClicked()">
-          <p>Add</p>
-        </button>
-      </th>
-
+      <thead>
+        <tr>
+          <!--TABLE HRADER-->
+          <th>ID</th>
+          <th>Name</th>
+          <th>Gender</th>
+          <th>Date of Birth</th>
+          <th>Course</th>
+          <th>Marks</th>
+          <th>Percentage</th>
+          <th>Fees</th>
+          <th></th>
+          <th>
+            <button class="insert-button" (click)="OnInsertClicked()">
+              <p>Add</p>
+            </button>
+          </th>
+        </tr>
+      </thead>
       <!--TABLE HEADER ENDS-->
 
       <!--TR FOR INSERING A NEW STUDENT-->
@@ -84,92 +130,94 @@
       </tr>
       <!--INSERT NEW STUDENT ROW ENDS-->
 
-      <!--DISPLAY ALL STUDENTS FROM STUDENTS ARRAY-->
-      <tr *ngFor="let std of students">
-        <td>{{ std.id }}</td>
+      <tbody>
+        <!--DISPLAY ALL STUDENTS FROM STUDENTS ARRAY-->
+        <tr *ngFor="let std of students">
+          <td>{{ std.id }}</td>
 
-        <td *ngIf="!isEditing || std.id !== stdIdToEdit">{{ std.name }}</td>
-        <td *ngIf="isEditing && std.id === stdIdToEdit">
-          <input type="text" [value]="std.name" #editName />
-        </td>
+          <td *ngIf="!isEditing || std.id !== stdIdToEdit">{{ std.name }}</td>
+          <td *ngIf="isEditing && std.id === stdIdToEdit">
+            <input type="text" [value]="std.name" #editName />
+          </td>
 
-        <td *ngIf="!isEditing || std.id !== stdIdToEdit">{{ std.gender }}</td>
-        <td *ngIf="isEditing && std.id === stdIdToEdit">
-          <select
-            name="gender"
-            class="select-gender-course"
-            [value]="std.gender"
-            #editGender
-          >
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-          </select>
-        </td>
+          <td *ngIf="!isEditing || std.id !== stdIdToEdit">{{ std.gender }}</td>
+          <td *ngIf="isEditing && std.id === stdIdToEdit">
+            <select
+              name="gender"
+              class="select-gender-course"
+              [value]="std.gender"
+              #editGender
+            >
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+          </td>
 
-        <td *ngIf="!isEditing || std.id !== stdIdToEdit">
-          {{ std.dob | date: 'longDate' | uppercase }}
-        </td>
-        <td *ngIf="isEditing && std.id === stdIdToEdit">
-          <input type="date" [value]="std.dob" #editDob />
-        </td>
+          <td *ngIf="!isEditing || std.id !== stdIdToEdit">
+            {{ std.dob | date: 'longDate' | uppercase }}
+          </td>
+          <td *ngIf="isEditing && std.id === stdIdToEdit">
+            <input type="date" [value]="std.dob" #editDob />
+          </td>
 
-        <td *ngIf="!isEditing || std.id !== stdIdToEdit">
-          {{ std.course | uppercase }}
-        </td>
-        <td *ngIf="isEditing && std.id === stdIdToEdit">
-          <select
-            name="course"
-            class="select-gender-course text-green-500"
-            [value]="std.course"
-            #editCourse
-          >
-            <option class="text-green-500" value="MBA">MBA</option>
-            <option class="text-green-500" value="B.Tech">B.TECH</option>
-            <option class="text-green-500" value="M.Sc">M.SC</option>
-          </select>
-        </td>
+          <td *ngIf="!isEditing || std.id !== stdIdToEdit">
+            {{ std.course | uppercase }}
+          </td>
+          <td *ngIf="isEditing && std.id === stdIdToEdit">
+            <select
+              name="course"
+              class="select-gender-course text-green-500"
+              [value]="std.course"
+              #editCourse
+            >
+              <option class="text-green-500" value="MBA">MBA</option>
+              <option class="text-green-500" value="B.Tech">B.TECH</option>
+              <option class="text-green-500" value="M.Sc">M.SC</option>
+            </select>
+          </td>
 
-        <td *ngIf="!isEditing || std.id !== stdIdToEdit">{{ std.marks }}</td>
-        <td *ngIf="isEditing && std.id === stdIdToEdit">
-          <input
-            type="number"
-            min="0"
-            max="600"
-            [value]="std.marks"
-            #editMarks
-          />
-        </td>
+          <td *ngIf="!isEditing || std.id !== stdIdToEdit">{{ std.marks }}</td>
+          <td *ngIf="isEditing && std.id === stdIdToEdit">
+            <input
+              type="number"
+              min="0"
+              max="600"
+              [value]="std.marks"
+              #editMarks
+            />
+          </td>
 
-        <td>{{ std.marks | percentage: totalMarks : 2 }}</td>
+          <td>{{ std.marks | percentage: totalMarks : 2 }}</td>
 
-        <td *ngIf="!isEditing || std.id !== stdIdToEdit">
-          {{ std.fee | currency: 'INR' : true : '2.2-2' }}
-        </td>
-        <td *ngIf="isEditing && std.id === stdIdToEdit">
-          <input type="number" min="0" [value]="std.fee" #editFee />
-        </td>
+          <td *ngIf="!isEditing || std.id !== stdIdToEdit">
+            {{ std.fee | currency: 'INR' : true : '2.2-2' }}
+          </td>
+          <td *ngIf="isEditing && std.id === stdIdToEdit">
+            <input type="number" min="0" [value]="std.fee" #editFee />
+          </td>
 
-        <td *ngIf="!isEditing || std.id !== stdIdToEdit">
-          <button class="edit-button" (click)="OnEditClicked(std.id)">
-            <p>Edit</p>
-          </button>
-        </td>
-        <td *ngIf="!isEditing || std.id !== stdIdToEdit">
-          <button (click)="onDeleteClicked(std)" class="delete-button">
-            <p>Delete</p>
-          </button>
-        </td>
-        <td *ngIf="isEditing && std.id === stdIdToEdit">
-          <button class="save-button" (click)="OnEditSaved(std)">
-            <p>Save</p>
-          </button>
-        </td>
-        <td *ngIf="isEditing && std.id === stdIdToEdit">
-          <button class="cancel-button" (click)="OnEditCancelled()">
-            <i class="fa fa-times" aria-hidden="true"></i>
-          </button>
-        </td>
-      </tr>
+          <td *ngIf="!isEditing || std.id !== stdIdToEdit">
+            <button class="edit-button" (click)="OnEditClicked(std.id)">
+              <p>Edit</p>
+            </button>
+          </td>
+          <td *ngIf="!isEditing || std.id !== stdIdToEdit">
+            <button (click)="onDeleteClicked(std)" class="delete-button">
+              <p>Delete</p>
+            </button>
+          </td>
+          <td *ngIf="isEditing && std.id === stdIdToEdit">
+            <button class="save-button" (click)="OnEditSaved(std)">
+              <p>Save</p>
+            </button>
+          </td>
+          <td *ngIf="isEditing && std.id === stdIdToEdit">
+            <button class="cancel-button" (click)="OnEditCancelled()">
+              <i class="fa fa-times" aria-hidden="true"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
     </table>
     <confirm-delete
       *ngIf="showDeleteComponent"

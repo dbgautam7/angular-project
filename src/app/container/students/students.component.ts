@@ -4,13 +4,16 @@ import {
   AsyncPipe,
   CurrencyPipe,
   DatePipe,
+  NgClass,
   NgFor,
   NgIf,
+  TitleCasePipe,
   UpperCasePipe,
 } from '@angular/common'
 import { PercentagePipe } from '../../pipes/percentage.pipe'
 import { StudentService } from '../../services/students.service'
 import { ConfirmDeleteComponent } from './confirmDelete/confirm-delete.component'
+import { FormsModule, NgForm } from '@angular/forms'
 
 @Component({
   selector: 'app-student',
@@ -24,7 +27,10 @@ import { ConfirmDeleteComponent } from './confirmDelete/confirm-delete.component
     DatePipe,
     UpperCasePipe,
     CurrencyPipe,
+    TitleCasePipe,
     ConfirmDeleteComponent,
+    FormsModule,
+    NgClass,
   ],
   styleUrl: './students.component.css',
 })
@@ -41,6 +47,12 @@ export class StudentComponent implements OnInit {
 
   showDeleteComponent: boolean = false
   studentToDelete: Student
+
+  genders = [
+    { id: '1', value: 'male' },
+    { id: '1', value: 'female' },
+    { id: '3', value: 'others' },
+  ]
 
   totalStudents = new Promise((resolve, rejection) => {
     setTimeout(() => {
@@ -126,5 +138,24 @@ export class StudentComponent implements OnInit {
       console.log(index, 'index')
       this.studentService.students.splice(index, 1)
     }
+  }
+
+  @ViewChild('sampleForm') form: NgForm
+
+  OnFormSubmitted() {
+    console.log(
+      'formSubmitted',
+      this.form,
+      this.form.value,
+      this.form.controls['password']?.value,
+      // this.form.control.patchValue({ selectedGender: 'others' }),
+    )
+    // this.form.reset()
+  }
+
+  patchGender() {
+    // this.form.form.controls?.['gender'].patchValue('others')
+    this.form.form.patchValue({ gender: 'others' })
+    this.form.form.patchValue({ pass: true })
   }
 }
