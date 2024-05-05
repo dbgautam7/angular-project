@@ -7,6 +7,7 @@ import { PageNotFoundComponent } from '../page-not-found/page-not-found.componen
 import { DetailComponent } from '../container/product-list/detail/detail.component'
 import { LoginFormComponent } from '../form/login/login-form.component'
 import { AuthGuard } from '../services/auth.guard'
+import { StudentComponent } from '../container/students/students.component'
 
 export const routes: Routes = [
   { path: 'home', redirectTo: '' },
@@ -30,12 +31,12 @@ export const routes: Routes = [
   //     },
   //   ],
   // },
-
   {
     path: 'products/:id',
     component: DetailComponent,
     data: { title: 'Details Page' },
   },
+  { path: 'students', component: StudentComponent },
   { path: 'about', component: ShowTaskComponent, canActivate: [AuthGuard] },
   { path: 'contact', component: TestComponent },
   { path: 'login', component: LoginFormComponent },

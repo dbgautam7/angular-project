@@ -27,6 +27,7 @@ import {
 } from '@angular/router'
 import { LoaderComponent } from './loader/loader.component'
 import { NgIf } from '@angular/common'
+import { StudentComponent } from './container/students/students.component'
 
 @Component({
   selector: 'app-root',
@@ -59,6 +60,7 @@ export class AppComponent implements OnInit {
   router: Router = inject(Router)
   ngOnInit(): void {
     this.router.events.subscribe((event: Event) => {
+      console.log(event, 'event')
       if (event instanceof NavigationStart) {
         this.showLoader = true
       }

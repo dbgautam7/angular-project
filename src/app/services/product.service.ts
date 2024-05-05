@@ -27,7 +27,7 @@ export class ProductService {
       name: 'Band',
       price: 100,
       color: 'Red',
-      discount: 15,
+      discount: 15.3333334,
       thumbnail: '/assets/band.webp',
       cartCount: 0,
     },

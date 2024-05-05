@@ -14,6 +14,10 @@
     </p>
     <p>Color: {{ product.color }}</p>
     <p>
+      Discount Percent:
+      {{ product.discount | percentage: product.price : 2 }}
+    </p>
+    <p>
       Discounted Price:
       {{
         'Rs.' +

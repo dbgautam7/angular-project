@@ -9,12 +9,19 @@ import {
 import { Product } from '../../../models/product'
 import { SetBackgroundColorDirective } from '../../../customDirectives/backgroundColor.directive'
 import { HighlightDirective } from '../../../customDirectives/highlight.directive'
-import { ActivatedRoute, Router } from '@angular/router'
+import { Router } from '@angular/router'
+import { PercentPipe } from '@angular/common'
+import { PercentagePipe } from '../../../pipes/percentage.pipe'
 
 @Component({
   selector: 'single-product',
   standalone: true,
-  imports: [SetBackgroundColorDirective, HighlightDirective],
+  imports: [
+    SetBackgroundColorDirective,
+    HighlightDirective,
+    PercentPipe,
+    PercentagePipe,
+  ],
   templateUrl: './product.component.html',
 })
 export class ProductComponent {

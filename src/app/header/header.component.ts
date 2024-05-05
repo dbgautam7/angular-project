@@ -14,6 +14,7 @@ export class HeaderComponent implements OnInit {
   navbarItems = [
     { name: 'Home', link: '' },
     { name: 'Products', link: 'products' },
+    { name: 'Students', link: 'students' },
     { name: 'About', link: 'about' },
     { name: 'Contact', link: 'contact' },
   ]
