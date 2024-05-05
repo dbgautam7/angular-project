@@ -20,6 +20,7 @@ interface Item {
   templateUrl: './test.component.html',
 })
 export class TestComponent {
+  itemList: Item[] = []
   items: Item[] = [
     {
       id: 1,
@@ -55,6 +56,12 @@ export class TestComponent {
       },
     },
   ]
+
+  ngOnInit(): void {
+    setTimeout(() => {
+      this.itemList = this.items
+    }, 3000)
+  }
 
   onItemClick(itemId: number): void {
     console.log(`Item with ID ${itemId} clicked`)

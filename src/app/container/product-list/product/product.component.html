@@ -1,4 +1,7 @@
-<div class="p-4 rounded-md border flex flex-col gap-2 justify-between">
+<div
+  (click)="handleNavigation()"
+  class="p-4 rounded-md border flex flex-col gap-2 justify-between"
+>
   <img
     class="rounded-md object-contain h-[250px] w-full"
     [src]="product.thumbnail"

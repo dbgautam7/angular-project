@@ -1,12 +1,13 @@
 import { ActivatedRoute, Router, RouterModule } from '@angular/router'
 import { Component, OnInit, inject } from '@angular/core'
 import { SearchComponent } from '../search/search.component'
-import { NgFor } from '@angular/common'
+import { NgFor, NgIf } from '@angular/common'
+import { AuthService } from '../services/auth.service'
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   standalone: true,
-  imports: [SearchComponent, NgFor, RouterModule],
+  imports: [SearchComponent, NgFor, RouterModule, NgIf],
   styleUrl: './header.component.css',
 })
 export class HeaderComponent implements OnInit {
@@ -18,6 +19,7 @@ export class HeaderComponent implements OnInit {
   ]
 
   router: Router = inject(Router)
+  authService: AuthService = inject(AuthService)
   activePath: ActivatedRoute = inject(ActivatedRoute)
 
   handleNavigation() {
@@ -25,7 +27,5 @@ export class HeaderComponent implements OnInit {
     this.router.navigateByUrl('')
   }
 
-  ngOnInit(): void {
-    console.log(this.activePath, 'Acti')
-  }
+  ngOnInit(): void {}
 }

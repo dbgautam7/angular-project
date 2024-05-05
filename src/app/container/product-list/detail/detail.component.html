@@ -1,7 +1,23 @@
 <div class="mt-4">
-  <h2>Selected Product</h2>
+  <h2 class="block mx-auto">Selected Product {{ title }}</h2>
   <p>Name: {{ selectedProduct?.name }}</p>
   <p>Price: {{ selectedProduct?.price }}</p>
   <p>Color: {{ selectedProduct?.color }}</p>
   <p>Discount: {{ selectedProduct?.discount }}</p>
+  <section class="mt-4 flex justify-between mx-2">
+    <button
+      [routerLink]="'/products/' + (selectedProduct.id - 1)"
+      [queryParams]="{ search: selectedProduct.id }"
+      class="border rounded-md inline-block px-4 py-2"
+    >
+      Previous Page
+    </button>
+    <button
+      [routerLink]="'/products/' + (selectedProduct.id + 1)"
+      [queryParams]="{ search: selectedProduct.id }"
+      class="border rounded-md inline-block px-4 py-2"
+    >
+      Next Page
+    </button>
+  </section>
 </div>

@@ -1,23 +1,38 @@
 <div class="mb-28 border p-4">
-  <ng-content select="#p"></ng-content>
+  <!-- <ng-content select="#p"></ng-content> -->
 
-  <!-- <ng-template #templateRef>
-    <input type="text" placeholder="Enter FirstName" #inputRef />
+  <ng-template #templateRef>
+    <div class="flex justify-between">
+      <input
+        class="border px-3 py-1 rounded-md"
+        type="text"
+        placeholder="Enter Username"
+        #username
+      />
+      <br />
+      <input
+        class="border px-3 py-1 rounded-md"
+        type="text"
+        placeholder="Enter Password"
+        #password
+      />
+    </div>
     <br />
-    <input type="text" placeholder="Enter FirstName" #inputRef />
-    <br />
-    <input type="text" placeholder="Enter FirstName" #inputRef />
-    <br />
-  <button (click)="log()">Button</button>
+    <button
+      class="border px-8 py-1 rounded-md mx-auto block"
+      (click)="handleLoggedIn()"
+    >
+      Button
+    </button>
   </ng-template>
 
-  <ng-container *ngTemplateOutlet="templateRef"></ng-container> -->
-  <button [disableButton]="true" (click)="toggleButton()">Toggle</button>
+  <ng-container *ngTemplateOutlet="templateRef"></ng-container>
+  <!-- <button [disableButton]="true" (click)="toggleButton()">Toggle</button>
   <ng-container *ngIf="buttonState; else off">
     <p>The button is on.</p>
   </ng-container>
   <ng-template #off>
     <p>The button is off.</p>
   </ng-template>
-  <ng-content select="#strong"></ng-content>
+  <ng-content select="#strong"></ng-content> -->
 </div>

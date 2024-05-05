@@ -1,7 +1,15 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core'
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  inject,
+} from '@angular/core'
 import { Product } from '../../../models/product'
 import { SetBackgroundColorDirective } from '../../../customDirectives/backgroundColor.directive'
 import { HighlightDirective } from '../../../customDirectives/highlight.directive'
+import { ActivatedRoute, Router } from '@angular/router'
 
 @Component({
   selector: 'single-product',
@@ -18,6 +26,12 @@ export class ProductComponent {
   @Output() decrementCartCount: EventEmitter<any> = new EventEmitter<any>()
   @Output() incrementCartCount: EventEmitter<any> = new EventEmitter<any>()
   @Output() onNameChange: EventEmitter<any> = new EventEmitter<any>()
+
+  router: Router = inject(Router)
+
+  handleNavigation() {
+    this.router.navigateByUrl(`/products/${this.product.id}`)
+  }
 
   decrementCart() {
     this.decrementCartCount.emit()

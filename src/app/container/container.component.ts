@@ -23,6 +23,7 @@ import { FormsModule } from '@angular/forms'
 export class ContainerComponent {
   searchText: string = ''
 
+  username: string = ''
   name: string = ''
   gender: string = 'male'
   age: number = null
@@ -32,6 +33,7 @@ export class ContainerComponent {
 
   handleCreateNewUser() {
     this.userService.createUser(
+      this.username,
       this.name,
       this.gender,
       this.age,

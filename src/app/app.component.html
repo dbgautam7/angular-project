@@ -15,5 +15,8 @@
   <app-create-task />
   <app-show-task />
   <div app-footer></div> -->
+  <div *ngIf="showLoader">
+    <app-loader></app-loader>
+  </div>
   <router-outlet></router-outlet>
 </main>
