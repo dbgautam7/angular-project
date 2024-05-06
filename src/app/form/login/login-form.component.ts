@@ -51,6 +51,7 @@ export class LoginFormComponent implements OnInit {
 
   handleLoggedIn() {
     console.log(this.reactiveForm, 'reactiveForm')
+    this.reactiveForm.reset()
     // const userName = this.username.nativeElement.value
     // console.log(userName, 'userName')
     // const user = this.authService.login(userName)
@@ -100,7 +101,12 @@ export class LoginFormComponent implements OnInit {
       },
       { updateOn: 'change' },
     )
-    console.log(this.reactiveForm, 'reactiveForm')
+    this.reactiveForm.valueChanges.subscribe((value) => {
+      console.log(value, 'changed value')
+    })
+    this.reactiveForm.get('username').statusChanges.subscribe((value) => {
+      console.log(value, 'status value')
+    })
   }
 
   addSkill(e: Event) {
