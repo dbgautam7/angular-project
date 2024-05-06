@@ -2,28 +2,164 @@
   <!-- <ng-content select="#p"></ng-content> -->
 
   <ng-template #templateRef>
-    <div class="flex justify-between">
+    <!-- <form
+      class="flex justify-between items-center flex-col rounded-md border w-fit p-4"
+    >
       <input
-        class="border px-3 py-1 rounded-md"
+        class="border px-3 py-1 rounded-md w-fit"
         type="text"
         placeholder="Enter Username"
         #username
       />
       <br />
       <input
-        class="border px-3 py-1 rounded-md"
+        class="border px-3 py-1 rounded-md w-fit"
         type="text"
         placeholder="Enter Password"
         #password
       />
-    </div>
-    <br />
-    <button
-      class="border px-8 py-1 rounded-md mx-auto block"
-      (click)="handleLoggedIn()"
+
+      <br />
+      <button
+        class="border px-8 py-1 rounded-md max-w-fit"
+        (click)="handleLoggedIn()"
+      >
+        Button
+      </button>
+    </form> -->
+    <form
+      [formGroup]="reactiveForm"
+      (ngSubmit)="handleLoggedIn()"
+      class="flex justify-between items-center flex-col rounded-md border w-fit p-4"
+      #localForm="ngForm"
     >
-      Button
-    </button>
+      <input
+        class="border px-3 py-1 rounded-md w-fit"
+        type="text"
+        placeholder="Enter Username"
+        formControlName="username"
+      />
+      <small
+        *ngIf="
+          reactiveForm.get('username').errors?.['required'] &&
+          (reactiveForm.get('username').touched || localForm.submitted)
+        "
+        class="text-red-500"
+        >This field is required*</small
+      >
+      <small
+        *ngIf="
+          reactiveForm.get('username').errors?.['minlength'] &&
+          (reactiveForm.get('username').touched || localForm.submitted)
+        "
+        class="text-red-500"
+        >Min length is 2*</small
+      >
+      <small
+        *ngIf="
+          reactiveForm.get('username').errors?.['noSpaceAllowed'] &&
+          (reactiveForm.get('username').touched || localForm.submitted)
+        "
+        class="text-red-500"
+        >No space allowed*</small
+      >
+      <br />
+      <input
+        class="border px-3 py-1 rounded-md w-fit"
+        type="text"
+        placeholder="Enter Password"
+        formControlName="password"
+      />
+      <br />
+      <div class="flex flex-col gap-2" formArrayName="skills">
+        <label>Skills</label>
+        <section
+          *ngFor="
+            let skill of reactiveForm.get('skills')['controls'];
+            let i = index
+          "
+          class="flex gap-2"
+        >
+          <input
+            class="border px-3 py-1 rounded-md w-fit"
+            type="text"
+            placeholder="Add skill..."
+            [formControlName]="i"
+          />
+          <button
+            type="button"
+            (click)="deleteSkill(i)"
+            class="border px-3 py-1 rounded-md w-fit border-red-500 text-red-500"
+          >
+            x
+          </button>
+        </section>
+
+        <button
+          type="button"
+          (click)="addSkill($event)"
+          class="border px-3 py-1 rounded-md w-fit"
+        >
+          Add Skill
+        </button>
+      </div>
+      <br />
+      <div class="input-box" formArrayName="experience">
+        <div
+          class="experience"
+          *ngFor="
+            let exp of reactiveForm.get('experience')['controls'];
+            let i = index
+          "
+          [formGroupName]="i"
+        >
+          <label>Experience {{ i + 1 }}</label>
+          <input
+            type="text"
+            placeholder="Company Name"
+            formControlName="company"
+          />
+          <div class="column">
+            <div class="select-box">
+              <select formControlName="position">
+                <option hidden>Position</option>
+                <option>Junior Developer</option>
+                <option>Software Developer</option>
+                <option>Senior Developer</option>
+                <option>Team Lead</option>
+              </select>
+            </div>
+            <input
+              type="number"
+              placeholder="Experience"
+              formControlName="totalExp"
+            />
+          </div>
+          <div class="column">
+            <input
+              type="date"
+              placeholder="Start Date"
+              formControlName="start"
+            />
+            <input type="date" placeholder="End Date" formControlName="end" />
+          </div>
+          <button
+            type="button"
+            class="btn-add-delete"
+            (click)="DeleteExperience(i)"
+          >
+            Delete Experience
+          </button>
+        </div>
+      </div>
+      <button type="button" class="btn-add-delete" (click)="AddExperience()">
+        Add Experience
+      </button>
+
+      <button type="submit" class="border px-8 py-1 rounded-md max-w-fit">
+        Button
+      </button>
+    </form>
   </ng-template>
 
   <ng-container *ngTemplateOutlet="templateRef"></ng-container>
