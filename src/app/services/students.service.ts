@@ -1,8 +1,12 @@
-import { Injectable } from '@angular/core'
+import { Injectable, inject } from '@angular/core'
 import { Student } from '../models/students'
+import { PostApiService } from './api/post-api.service'
+import { GetApiService } from './api/get-api.service'
 
 @Injectable({ providedIn: 'root' })
 export class StudentService {
+  getApiService: GetApiService = inject(GetApiService)
+  postApiService: PostApiService = inject(PostApiService)
   students: Student[] = [
     new Student(
       1,
@@ -62,10 +66,21 @@ export class StudentService {
 
   totalMarks: number = 600
 
+  GetStudents() {
+    this.getApiService.fetchData(
+      'https://angular-project-3de0f-default-rtdb.firebaseio.com/students.json',
+    )
+  }
+
   CreateStudent(name, gender, dob, course, marks, fee) {
     let id = this.students.length + 1
     let student = new Student(id, name, gender, dob, course, marks, fee)
+    console.log(student, 'student======688888')
     this.students.push(student)
+    this.postApiService.postData(
+      'https://angular-project-3de0f-default-rtdb.firebaseio.com/students.json',
+      student,
+    )
 
     // let studentCopy = [...this.students];//0x34567
     // studentCopy.push(student);

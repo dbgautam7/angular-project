@@ -20,6 +20,9 @@ import {
   Validators,
 } from '@angular/forms'
 import { noSpaceAllowed } from '../../validators/noSpaceAllowed.validator'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { GetApiService } from './../../services/api/get-api.service'
+import { PostApiService } from '../../services/api/post-api.service'
 
 @Component({
   selector: 'login-form',
@@ -43,15 +46,41 @@ export class LoginFormComponent implements OnInit {
     this.searchText = value
   }
   route: Router = inject(Router)
+  http: HttpClient = inject(HttpClient)
   authService: AuthService = inject(AuthService)
+  getApiService: GetApiService = inject(GetApiService)
+  postApiService: PostApiService = inject(PostApiService)
 
   // @ViewChildren('inputRef', {})
   @ViewChild('username') username: ElementRef
   // loginInputElements: QueryList<ElementRef>
 
+  private fetchAllUsers() {
+    this.getApiService.fetchData(
+      'https://angular-project-3de0f-default-rtdb.firebaseio.com/users.json',
+    )
+  }
+
   handleLoggedIn() {
-    console.log(this.reactiveForm, 'reactiveForm')
-    this.reactiveForm.reset()
+    this.postApiService.postData(
+      'https://angular-project-3de0f-default-rtdb.firebaseio.com/users.json',
+      this.reactiveForm.value,
+    )
+    // const headers = new HttpHeaders({ 'custom-header': '12345' })
+    // this.http
+    //   .post<{
+    //     name: string
+    //   }>(
+    //     'https://angular-project-3de0f-default-rtdb.firebaseio.com/users.json',
+    //     this.reactiveForm.value,
+    //     { headers: headers },
+    //   )
+    //   .subscribe((res) => {
+    //     if (Object.keys(res).length !== 0) {
+    //       this.reactiveForm.reset()
+    //     }
+    //   })
+
     // const userName = this.username.nativeElement.value
     // console.log(userName, 'userName')
     // const user = this.authService.login(userName)
@@ -62,6 +91,16 @@ export class LoginFormComponent implements OnInit {
     // this.loginInputElements.map((item) => {
     //   console.log(item.nativeElement.value, 'item')
     // })
+  }
+
+  deleteUser(id: string = '-NxHI3Roghstu2icpWUY') {
+    this.http
+      .delete(
+        `https://angular-project-3de0f-default-rtdb.firebaseio.com/users/${id}.json`,
+      )
+      .subscribe((res) => {
+        console.log(res, 'res')
+      })
   }
 
   toggleButton() {
@@ -82,6 +121,7 @@ export class LoginFormComponent implements OnInit {
   // }
 
   ngOnInit(): void {
+    this.fetchAllUsers()
     // this.title = history.state
     // console.log(this.title, 'title')
     this.reactiveForm = new FormGroup(
@@ -101,12 +141,8 @@ export class LoginFormComponent implements OnInit {
       },
       { updateOn: 'change' },
     )
-    this.reactiveForm.valueChanges.subscribe((value) => {
-      console.log(value, 'changed value')
-    })
-    this.reactiveForm.get('username').statusChanges.subscribe((value) => {
-      console.log(value, 'status value')
-    })
+    this.reactiveForm.valueChanges.subscribe((value) => {})
+    this.reactiveForm.get('username').statusChanges.subscribe((value) => {})
   }
 
   addSkill(e: Event) {

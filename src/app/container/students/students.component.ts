@@ -7,6 +7,7 @@ import {
   NgClass,
   NgFor,
   NgIf,
+  PercentPipe,
   TitleCasePipe,
   UpperCasePipe,
 } from '@angular/common'
@@ -27,6 +28,7 @@ import { FormsModule, NgForm } from '@angular/forms'
     DatePipe,
     UpperCasePipe,
     CurrencyPipe,
+    PercentPipe,
     TitleCasePipe,
     ConfirmDeleteComponent,
     FormsModule,

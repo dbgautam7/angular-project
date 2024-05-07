@@ -15,13 +15,13 @@
     <p>Color: {{ product.color }}</p>
     <p>
       Discount Percent:
-      {{ product.discount | percentage: product.price : 2 }}
+      {{ product.discount | percent }}
     </p>
     <p>
       Discounted Price:
       {{
         'Rs.' +
-          (product.price - (product.discount * product.price) / 100).toFixed(2)
+          (product.price - (product.discount * product.price) / 100)?.toFixed(2)
       }}
     </p>
     <div class="flex gap-4 items-center justify-center">

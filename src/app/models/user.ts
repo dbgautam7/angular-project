@@ -19,3 +19,17 @@ export class User {
     this.isStudent = isStudent
   }
 }
+
+export class ResponseUser {
+  experience?: {
+    company: string
+    end: Date
+    position: string
+    start: Date
+    totalExp: number
+  }[]
+  password: string
+  skills?: string[]
+  username: string
+  id?: string
+}

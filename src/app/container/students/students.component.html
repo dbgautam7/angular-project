@@ -118,9 +118,7 @@
           <input type="number" min="0" #fee />
         </td>
         <td>
-          <button class="save-button" (click)="OnInsertSaved()">
-            <i class="fa fa-floppy-o" aria-hidden="true"></i>
-          </button>
+          <button class="save-button" (click)="OnInsertSaved()">Save</button>
         </td>
         <td>
           <button class="cancel-button" (click)="OnInsertCancelled()">
@@ -187,7 +185,7 @@
             />
           </td>
 
-          <td>{{ std.marks | percentage: totalMarks : 2 }}</td>
+          <td>{{ std.marks | percent }}</td>
 
           <td *ngIf="!isEditing || std.id !== stdIdToEdit">
             {{ std.fee | currency: 'INR' : true : '2.2-2' }}

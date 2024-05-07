@@ -60,7 +60,6 @@ export class AppComponent implements OnInit {
   router: Router = inject(Router)
   ngOnInit(): void {
     this.router.events.subscribe((event: Event) => {
-      console.log(event, 'event')
       if (event instanceof NavigationStart) {
         this.showLoader = true
       }
