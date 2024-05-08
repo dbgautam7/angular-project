@@ -8,10 +8,11 @@ import { DetailComponent } from '../container/product-list/detail/detail.compone
 import { LoginFormComponent } from '../form/login/login-form.component'
 import { AuthGuard } from '../services/auth.guard'
 import { StudentComponent } from '../container/students/students.component'
+import { DashboardComponent } from '../dashboard/dashboard.component'
 
 export const routes: Routes = [
   { path: 'home', redirectTo: '' },
-  { path: '', component: LocalSearchComponent },
+  { path: '', component: DashboardComponent },
   {
     path: 'products',
     component: ProductListComponent,
