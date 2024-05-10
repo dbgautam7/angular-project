@@ -1,6 +1,15 @@
 import { ProductService } from './../../services/product.service'
 import { NgFor, NgIf } from '@angular/common'
-import { Component, Input, OnInit, inject } from '@angular/core'
+import {
+  Component,
+  DoCheck,
+  Input,
+  OnInit,
+  computed,
+  effect,
+  inject,
+  signal,
+} from '@angular/core'
 import { ProductComponent } from './product/product.component'
 import { Product } from '../../models/product'
 import { ActivatedRoute } from '@angular/router'
@@ -11,7 +20,7 @@ import { ActivatedRoute } from '@angular/router'
   imports: [NgFor, NgIf, ProductComponent],
   templateUrl: './product-list.component.html',
 })
-export class ProductListComponent implements OnInit {
+export class ProductListComponent implements OnInit, DoCheck {
   addToCartCount: number = 0
   stockCount: number = 7
   product = {
@@ -60,5 +69,24 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
     // this.searchText = this.activeRoute.snapshot.queryParamMap.get('search')
+  }
+
+  counter = signal(0)
+  doubleCounter = computed(() => this.counter() * 2)
+  incrementCounter() {
+    this.counter.update((preVal) => preVal + 1)
+  }
+
+  decrementCounter() {
+    this.counter.update((preVal) => preVal - 1)
+  }
+  ngDoCheck(): void {
+    console.log('called from product component')
+  }
+
+  constructor() {
+    effect(() => {
+      console.log('counter value changes'), this.counter()
+    })
   }
 }

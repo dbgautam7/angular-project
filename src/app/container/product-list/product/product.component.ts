@@ -1,10 +1,12 @@
 import {
   Component,
+  DoCheck,
   EventEmitter,
   Input,
   OnInit,
   Output,
   inject,
+  signal,
 } from '@angular/core'
 import { Product } from '../../../models/product'
 import { SetBackgroundColorDirective } from '../../../customDirectives/backgroundColor.directive'

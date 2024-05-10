@@ -11,4 +11,10 @@
       </single-product>
     </ng-container>
   </div>
+  <div class="flex mx-auto gap-4 justify-center">
+    <button (click)="incrementCounter()">+</button>
+    <p>{{ counter() }}</p>
+    <p>{{ doubleCounter() }}</p>
+    <button (click)="decrementCounter()">-</button>
+  </div>
 </div>
